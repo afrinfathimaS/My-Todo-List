@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(233, 237, 244);
+            margin: 0;
+        }
+        .Main{
+            width: 50vw;
+            height: 80vh;
+            background-color: black;
+            border: 3px solid white;
+            border-radius: 50px;
+            position: relative;
+            left: 25vw;
+            top: 10vh;
+            font-size: x-large;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input{
+            width: 400px;
+            height: 40px;
+            border-radius: 10px;
+        }
+        button{
+            width: 200px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgb(242, 243, 247) ;
+            color:black;
+            font-size: large;
+        }
+        ::placeholder{
+            font-size: larger;
+            color: black;
+            padding-left: 30px;
+        }
+        .removebutton{
+            background-color: red;
+            width: 100px;
+            position: absolute;
+            right: 1vw;
+        }
+        .Sub{
+            position: relative;
+            width: 20vw;
+            height: 5vh;
+             background-color:white;
+             color: black;
+             border: 2px solid white;
+             border-radius: 10px;
+             display: flex;
+             justify-content: space-evenly;
+             align-items: center;
+             margin-top: 20px;
+        }
+        .Sub span{
+            position: absolute;
+            left: 2vw;
+            text-align: left;
+        }
+        #todolist{
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="Main">
+        <h1>To-Do List </h1>
+        <input type="text" id="todoinput" placeholder="Enter task here">
+        <button onclick="addToDo()">Add Task</button>
+        <div id="todolist">
+            
+        </div>
+
+    </div>
+
+    <script>
+        function addToDo(){
+          let taskvalue =   document.getElementById('todoinput').value;
+          if(taskvalue==""){
+            return;
+          }
+          let taskstore = document.createElement("div");
+          taskstore.className = "Sub"
+
+          let tasktext = document.createElement("span");
+          tasktext.innerText = taskvalue;
+
+          let removebutton = document.createElement("button");
+          removebutton.innerText = "Remove"
+          removebutton.className = "removebutton"
+          removebutton.onclick = function(){
+            taskstore.remove();
+          }
+
+          taskstore.appendChild(tasktext);
+          taskstore.appendChild(removebutton);
+
+          document.getElementById('todolist').appendChild(taskstore);
+
+          document.getElementById('todoinput').value = "";
+        }
+    </script>
+    
+</body>
+</html>
